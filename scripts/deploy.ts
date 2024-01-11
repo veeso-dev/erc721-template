@@ -5,7 +5,7 @@ const { OWNER_ADDRESS } = process.env;
 
 async function main() {
   // deploy meow storage
-  const contract = await ethers.deployContract("MyNFT", [OWNER_ADDRESS]);
+  const contract = await ethers.deployContract("MyNft", [OWNER_ADDRESS]);
   const deployedContract = await contract.deploy();
   await deployedContract.deployed();
   console.log(`Contract deployed to ${deployedContract.address}`);

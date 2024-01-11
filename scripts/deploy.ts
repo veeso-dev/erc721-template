@@ -4,11 +4,12 @@ require("dotenv").config();
 const { OWNER_ADDRESS } = process.env;
 
 async function main() {
-  // deploy meow storage
-  const contract = await ethers.deployContract("MyNft", [OWNER_ADDRESS]);
-  const deployedContract = await contract.deploy();
-  await deployedContract.deployed();
-  console.log(`Contract deployed to ${deployedContract.address}`);
+  // deploy contract
+  const Contract = await ethers.getContractFactory("MyNft");
+  const contract = await Contract.deploy(OWNER_ADDRESS!);
+  await contract.waitForDeployment();
+  const address = await contract.getAddress();
+  console.log(`Contract deployed to ${address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

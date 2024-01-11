@@ -16,7 +16,6 @@ jobs:
       - name: Create local node and deploy
         run: |
           cp .env.github .env &&
-          sudo yarn compile &&
           yarn hardhat node &
           sleep 2 &&
           yarn hardhat run scripts/deploy.ts --network localhost

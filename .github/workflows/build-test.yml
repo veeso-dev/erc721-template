@@ -17,6 +17,7 @@ jobs:
         run: |
           cp .env.github .env &&
           yarn compile &&
+          yarn hardhat node &
           yarn hardhat run scripts/deploy.ts --network localhost
       - name: tests
         run: yarn hardhat test

@@ -11,6 +11,17 @@ const Primary = (props: React.HTMLProps<HTMLButtonElement>) => (
   </button>
 );
 
+const Danger = (props: React.HTMLProps<HTMLButtonElement>) => (
+  <button
+    type={'button'}
+    className={`${props.className} text-white bg-red-500 hover:bg-red-900 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 800 :bg-gray-700 :ring-gray-700 disabled:cursor-not-allowed`}
+    disabled={props.disabled}
+    onClick={props.onClick}
+  >
+    {props.children}
+  </button>
+);
+
 const Alternative = (props: React.HTMLProps<HTMLButtonElement>) => (
   <button
     type={'button'}
@@ -35,6 +46,7 @@ const Tertiary = (props: React.HTMLProps<HTMLButtonElement>) => (
 
 export default {
   Primary,
+  Danger,
   Alternative,
   Tertiary,
 };

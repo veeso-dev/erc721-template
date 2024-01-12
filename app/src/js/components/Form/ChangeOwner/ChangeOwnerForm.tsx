@@ -7,9 +7,10 @@ import Input from '../../reusable/Input';
 import Button from '../../reusable/Button';
 import Web3Client from '../../../web3/Web3Client';
 import Alerts from '../../reusable/Alerts';
+import { ChainId } from '../../MetamaskConnect';
 
 const ChangeOwnerForm = () => {
-  const { account, ethereum } = useConnectedMetaMask();
+  const { account, ethereum, chainId } = useConnectedMetaMask();
   const [newOwner, setNewOwner] = React.useState('');
   const [pendingTx, setPendingTx] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>();
@@ -20,7 +21,7 @@ const ChangeOwnerForm = () => {
 
   const onTransfer = () => {
     setPendingTx(true);
-    const client = new Web3Client(account, ethereum);
+    const client = new Web3Client(account, ethereum, chainId as ChainId);
     client
       .transferOwnership(newOwner)
       .then(() => {
@@ -44,13 +45,13 @@ const ChangeOwnerForm = () => {
         onChange={onNewOwnerChanged}
         value={newOwner}
       />
-      <Button.Primary
+      <Button.Danger
         disabled={btnDisabled}
         onClick={onTransfer}
         className="!mt-4"
       >
         Transfer ownership
-      </Button.Primary>
+      </Button.Danger>
       {error && (
         <Alerts.Danger>
           <p>{error}</p>

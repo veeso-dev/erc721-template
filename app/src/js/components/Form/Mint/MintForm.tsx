@@ -7,9 +7,10 @@ import Input from '../../reusable/Input';
 import Button from '../../reusable/Button';
 import Web3Client from '../../../web3/Web3Client';
 import Alerts from '../../reusable/Alerts';
+import { ChainId } from '../../MetamaskConnect';
 
 const MintForm = () => {
-  const { account, ethereum } = useConnectedMetaMask();
+  const { account, ethereum, chainId } = useConnectedMetaMask();
   const [recipientAddress, setRecipientAddress] = React.useState('');
   const [tokenURI, setTokenURI] = React.useState('');
   const [pendingTx, setPendingTx] = React.useState<boolean>(false);
@@ -27,7 +28,7 @@ const MintForm = () => {
 
   const onMint = () => {
     setPendingTx(true);
-    const client = new Web3Client(account, ethereum);
+    const client = new Web3Client(account, ethereum, chainId as ChainId);
     client
       .safeMint(recipientAddress, tokenURI)
       .then(() => {

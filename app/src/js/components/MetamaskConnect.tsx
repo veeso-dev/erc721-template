@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useMetaMask } from 'metamask-react';
 import Logo from './MetamaskConnect/Logo';
 import Button from './reusable/Button';
+import Container from './reusable/Container';
+import Select from './reusable/Select';
 
 export enum ChainId {
   Mainnet = '0x1',
@@ -11,23 +13,25 @@ export enum ChainId {
   Kovan = '0x2a',
 }
 
-interface Props {
-  chainId: ChainId;
-}
+const MetamaskConnect = () => {
+  const [chainId, setChainId] = React.useState<ChainId>();
 
-const MetamaskConnect = ({ chainId: configChainId }: Props) => {
-  const { status, connect, account, chainId, switchChain } = useMetaMask();
-  const disabled = [
-    'initializing',
-    'unavailable',
-    'connecting',
-    'connected',
-  ].includes(status);
+  const {
+    status,
+    connect,
+    account,
+    chainId: currentChainId,
+    switchChain,
+  } = useMetaMask();
+  const disabled =
+    ['initializing', 'unavailable', 'connecting', 'connected'].includes(
+      status,
+    ) || !chainId;
 
   const onClick = () => {
-    if (status === 'notConnected') {
-      if (chainId !== configChainId) {
-        switchChain(configChainId);
+    if (status === 'notConnected' && chainId) {
+      if (chainId !== currentChainId) {
+        switchChain(chainId);
       }
       return connect();
     }
@@ -50,14 +54,31 @@ const MetamaskConnect = ({ chainId: configChainId }: Props) => {
   };
 
   return (
-    <Button.Alternative
-      className="my-0 !mb-0"
-      onClick={onClick}
-      disabled={disabled}
-    >
-      <Logo />
-      {text()}
-    </Button.Alternative>
+    <Container.FlexRow className="items-center gap-8">
+      <Select
+        id="metamask-chainid-select"
+        label="Network"
+        className="text-white text"
+        value={chainId}
+        onChange={(e) => setChainId(e.target.value as ChainId)}
+      >
+        {!chainId && (
+          <option value="" selected>
+            Select a network
+          </option>
+        )}
+        <option value={ChainId.Mainnet}>Mainnet</option>
+        <option value={ChainId.Goerli}>Goerli</option>
+      </Select>
+      <Button.Alternative
+        className="my-0 !mb-0"
+        onClick={onClick}
+        disabled={disabled}
+      >
+        <Logo />
+        {text()}
+      </Button.Alternative>
+    </Container.FlexRow>
   );
 };
 

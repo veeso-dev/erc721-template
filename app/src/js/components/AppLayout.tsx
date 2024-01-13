@@ -9,7 +9,7 @@ const AppLayout = () => (
   <Page.BlankPage>
     <Container.FlexRow className="justify-between items-center py-4 bg-brand px-4">
       <span className="text-xl text-white">NFT WebUI</span>
-      <MetamaskConnect chainId={ChainId.Goerli} />
+      <MetamaskConnect />
     </Container.FlexRow>
     <Container.PageContent className="py-8">
       <Form />

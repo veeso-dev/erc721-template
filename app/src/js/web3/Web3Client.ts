@@ -26,6 +26,21 @@ export default class Web3Client {
     return contract.methods.safeMint(address, uri).send({ from: this.address });
   }
 
+  async totalSupply(): Promise<number> {
+    const contract = this.getContract();
+    return contract.methods.totalSupply().call();
+  }
+
+  async symbol(): Promise<string> {
+    const contract = this.getContract();
+    return contract.methods.symbol().call();
+  }
+
+  async name(): Promise<string> {
+    const contract = this.getContract();
+    return contract.methods.name().call();
+  }
+
   private getContract() {
     return new this.web3.eth.Contract(ABI, CONTRACT_ADDRESS[this.chainId]);
   }

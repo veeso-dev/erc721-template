@@ -4,6 +4,16 @@ export const ABI = [
   {
     inputs: [
       {
+        internalType: 'string',
+        name: 'name',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: 'symbol',
+        type: 'string',
+      },
+      {
         internalType: 'address',
         name: 'initialOwner',
         type: 'address',
@@ -11,6 +21,11 @@ export const ABI = [
     ],
     stateMutability: 'nonpayable',
     type: 'constructor',
+  },
+  {
+    inputs: [],
+    name: 'ERC721EnumerableForbiddenBatchMint',
+    type: 'error',
   },
   {
     inputs: [
@@ -113,6 +128,22 @@ export const ABI = [
       },
     ],
     name: 'ERC721NonexistentToken',
+    type: 'error',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'index',
+        type: 'uint256',
+      },
+    ],
+    name: 'ERC721OutOfBoundsIndex',
     type: 'error',
   },
   {
@@ -537,6 +568,49 @@ export const ABI = [
     inputs: [
       {
         internalType: 'uint256',
+        name: 'index',
+        type: 'uint256',
+      },
+    ],
+    name: 'tokenByIndex',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'index',
+        type: 'uint256',
+      },
+    ],
+    name: 'tokenOfOwnerByIndex',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
         name: 'tokenId',
         type: 'uint256',
       },
@@ -547,6 +621,19 @@ export const ABI = [
         internalType: 'string',
         name: '',
         type: 'string',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
       },
     ],
     stateMutability: 'view',
@@ -596,6 +683,7 @@ interface ContractAddress {
   [ChainId.Mainnet]: string;
   [ChainId.Rinkeby]: string;
   [ChainId.Ropsten]: string;
+  [ChainId.Hardhat]: string;
 }
 
 export const CONTRACT_ADDRESS: ContractAddress = {
@@ -604,4 +692,5 @@ export const CONTRACT_ADDRESS: ContractAddress = {
   [ChainId.Mainnet]: '0xa0647F0Da8B541C8876C234Bc9C4dC50F19515ea',
   [ChainId.Rinkeby]: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
   [ChainId.Ropsten]: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  [ChainId.Hardhat]: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
 };

@@ -16,7 +16,11 @@ describe("MyNft", () => {
 
   beforeEach(async () => {
     const [owner, otherAccount] = await ethers.getSigners();
-    const contract = await ethers.deployContract(_name, [owner.address]);
+    const contract = await ethers.deployContract(_name, [
+      _name,
+      _symbol,
+      owner.address,
+    ]);
 
     deploy = {
       token: contract as unknown as MyNft,
@@ -70,5 +74,18 @@ describe("MyNft", () => {
     const { otherAccount, owner: originalOwner, token } = deploy;
     await token.transferOwnership(otherAccount.address);
     expect(await token.owner()).to.equal(otherAccount.address);
+  });
+
+  it("should get the total supply", async () => {
+    const { token, otherAccount } = deploy;
+    await token.safeMint(
+      otherAccount.address,
+      "https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/1"
+    );
+    await token.safeMint(
+      otherAccount.address,
+      "https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/2"
+    );
+    expect(await token.totalSupply()).to.equal(2);
   });
 });

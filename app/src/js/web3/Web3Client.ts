@@ -26,7 +26,7 @@ export default class Web3Client {
     return contract.methods.safeMint(address, uri).send({ from: this.address });
   }
 
-  async totalSupply(): Promise<number> {
+  async totalSupply(): Promise<BigInt> {
     const contract = this.getContract();
     return contract.methods.totalSupply().call();
   }

@@ -46,7 +46,7 @@ const getMetadata = async (
   const client = new Web3Client(account, ethereum, chainId);
   const name = await client.name();
   const symbol = await client.symbol();
-  const totalSupply = await client.totalSupply();
+  const totalSupply = Number(await client.totalSupply());
 
   return {
     name,

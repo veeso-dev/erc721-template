@@ -9,6 +9,7 @@ const {
   DEV_PRIVATE_KEY,
   PROD_PRIVATE_KEY,
   LOCAL_PRIVATE_KEY,
+  ETHERSCAN_API_KEY,
 } = process.env;
 
 const config: HardhatUserConfig = {
@@ -26,6 +27,9 @@ const config: HardhatUserConfig = {
       url: "http://127.0.0.1:8545/",
       accounts: [`0x${LOCAL_PRIVATE_KEY}`],
     },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
   },
   gasReporter: {
     currency: "USD",

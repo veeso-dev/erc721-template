@@ -59,6 +59,21 @@ This repo comes with a built-in IPFS upload tool.
 
 Read more in this [README](./tools/ipfs-upload/README.md)
 
+## Verify source code
+
+put Etherscan apikey in `.env` file.
+
+Then run:
+
+```sh
+yarn hardhat verify --network $NETWORK "$CONTRACT_ADDRESS" "$NAME" "$SYMBOL" "$OWNER_ADDRESS"
+```
+
+Network can be either:
+
+- goerli
+- ethereum
+
 ## License
 
 ERC721 template is licensed under the MIT license.

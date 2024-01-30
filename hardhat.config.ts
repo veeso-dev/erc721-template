@@ -22,7 +22,7 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: GOERLI_API_URL,
-      accounts: [`0x${PROD_PRIVATE_KEY}`],
+      accounts: [`0x${DEV_PRIVATE_KEY}`],
     },
     sepolia: {
       url: SEPOLIA_API_URL,

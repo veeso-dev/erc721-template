@@ -35,6 +35,7 @@ const config: HardhatUserConfig = {
     currency: "USD",
     gasPriceApi:
       "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    enabled: true,
   },
 };
 

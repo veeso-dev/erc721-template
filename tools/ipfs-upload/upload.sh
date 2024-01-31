@@ -19,7 +19,7 @@ while [ $counter -le $end_n ]; do
   json_file=$(ls $artifacts_dir/$artifact_id-*.json | awk '{print $1}')
   png_file=$(ls $artifacts_dir/$artifact_id-*.png | awk '{print $1}')
   echo "uploading file $json_file;$png_file"
-  node index.js "$json_file" "$png_file" "$output_dir"
+  node index.mjs "$json_file" "$png_file" "$output_dir"
 
   let counter=counter+1
 done

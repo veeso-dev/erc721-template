@@ -12,6 +12,7 @@ export enum ChainId {
   Goerli = '0x5',
   Kovan = '0x2a',
   Hardhat = '0x7a69',
+  Sepolia = '0xaa36a7',
 }
 
 const MetamaskConnect = () => {
@@ -83,6 +84,7 @@ const MetamaskConnect = () => {
           </option>
         )}
         <option value={ChainId.Mainnet}>Mainnet</option>
+        <option value={ChainId.Sepolia}>Sepolia</option>
         <option value={ChainId.Goerli}>Goerli</option>
         <option value={ChainId.Hardhat}>Hardhat</option>
       </Select>

@@ -6,6 +6,7 @@ require("dotenv").config();
 const {
   ETHEREUM_API_URL,
   GOERLI_API_URL,
+  SEPOLIA_API_URL,
   DEV_PRIVATE_KEY,
   PROD_PRIVATE_KEY,
   LOCAL_PRIVATE_KEY,
@@ -21,6 +22,10 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: GOERLI_API_URL,
+      accounts: [`0x${DEV_PRIVATE_KEY}`],
+    },
+    sepolia: {
+      url: SEPOLIA_API_URL,
       accounts: [`0x${DEV_PRIVATE_KEY}`],
     },
     localhost: {

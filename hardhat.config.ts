@@ -15,6 +15,9 @@ const {
 
 const config: HardhatUserConfig = {
   solidity: "0.8.20",
+  sourcify: {
+    enabled: true,
+  },
   networks: {
     ethereum: {
       url: ETHEREUM_API_URL,

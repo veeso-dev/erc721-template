@@ -41,6 +41,12 @@ const MintForm = () => {
       });
   };
 
+  React.useEffect(() => {
+    if (account && recipientAddress.length === 0) {
+      setRecipientAddress(account);
+    }
+  }, [account]);
+
   const btnDisabled =
     tokenURI.length == 0 || recipientAddress.length !== 42 || pendingTx;
 
